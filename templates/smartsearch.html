@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Page Title -->
+  <script src="https://kit.fontawesome.com/40b8ba8176.js" crossorigin="anonymous"></script>
+
+  <title>ChatBot</title>
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{{ url_for('static',filename='chatbot.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='bevin.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='home.css') }}">
+  
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/40b8ba8176.js" crossorigin="anonymous"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Poppins&display=swap" rel="stylesheet">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="{{ url_for('static',filename='logobrowser.png')}}">
+  
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <div class="h-screen w-full flex">
+    <!-- Sidebar -->
+    <nav id="sidebar" class="flex flex-col h-screen bg-black shadow-2xl lg:w-20 w-3/5 p-4 transition-all duration-200 lg:hover:w-56 absolute lg:relative lg:top-0 lg:left-0 -left-full z-50">
+      <div class="flex justify-between transition-all ease-in-out">
+        <img src="/static/sharvilgoatlogo.svg" alt="Logo" class="h-16 w-16 rounded-3xl" />
+        <i id="closemenubtn" class="text-gray-100 fa-solid fa-times text-2xl mt-4 lg:hidden focus:outline-none"></i>
+      </div>
+      <div class="h-full flex flex-col justify-around">
+        <!-- Navigation Items -->
+        <a href="/home/{{id}}" class="lg:h-16 md:h-2">
+          <div class="relative cursor-pointer p-2 border-b-2 lg:border-0 border-white rounded-2xl border-l-8 lg:hover:border-white lg:hover:rounded-2xl lg:hover:border-l-8 lg:hover:shadow-2xl transition-all duration-100 group">
+            <i class="fa-solid fa-house-chimney fa-3xl text-gray-100 text-2xl"></i>
+            <span class="absolute text-center text-gray-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-100 ease-in-out text-lg opacity-100 left-12">Home</span>
+          </div>
+        </a>
+        
+        <a href="/favorites/{{id}}" class="lg:h-16 md:h-2">
+          <div class="relative cursor-pointer p-2 border-b-2 lg:border-0 border-white rounded-2xl border-l-8 lg:hover:border-white lg:hover:rounded-2xl lg:hover:border-l-8 lg:hover:shadow-2xl transition-all duration-100 group">
+            <i class="fa-solid fa-book-bookmark fa-3xl text-gray-100 text-2xl"></i>
+            <span class="absolute text-center text-gray-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-100 ease-in-out text-lg opacity-100 left-12">Favourites</span>
+          </div>
+        </a>
+        
+        <a href="/chatbot/{{id}}" class="lg:h-16 md:h-2">
+          <div class="relative cursor-pointer p-2 border-b-2 lg:border-0 border-white rounded-2xl border-l-8 lg:hover:border-white lg:hover:rounded-2xl lg:hover:border-l-8 lg:hover:shadow-2xl transition-all duration-100 group">
+            <i class="fa-solid fa-robot fa-3xl text-gray-100 text-2xl"></i>
+            <span class="absolute text-center text-gray-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-100 ease-in-out text-lg opacity-100 left-12">Chatbot</span>
+          </div>
+        </a>
+        <a href="/smartsearch/{{id}}" class="lg:h-16 md:h-2">
+          <div class="relative cursor-pointer p-2 border-b-2 lg:border-0 border-white rounded-2xl border-l-8 lg:hover:border-white lg:hover:rounded-2xl lg:hover:border-l-8 lg:hover:shadow-2xl transition-all duration-100 group">
+            <i class="fa-solid fa-binoculars fa-3xl text-gray-100 text-2xl"></i>
+            <span class="absolute text-center text-gray-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-100 ease-in-out text-lg opacity-100 left-12">Smart Search</span>
+          </div>
+        </a>
+        <a href="/worldchat/{{id}}" class="lg:h-16 md:h-2  opacity-60 lg:cursor-pointer lg:opacity-100 world">
+          <div class="relative cursor-pointer p-2 border-b-2 lg:border-0 border-white rounded-2xl border-l-8 lg:hover:border-white lg:hover:rounded-2xl lg:hover:border-l-8 lg:hover:shadow-2xl transition-all duration-100 group">
+            <i class="fa-solid fa-globe fa-3xl text-gray-100 text-2xl"></i>
+            <span class="absolute text-center text-gray-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-100 ease-in-out text-lg opacity-100 left-12">World Chat</span>
+          </div>
+        </a>
+        
+        <form action="/home/{{id}}" name="navbar" method="post">
+          <button href="/" class="lg:h-16 md:h-2 w-full text-left" value="signout" name="signout">
+            <div class="relative cursor-pointer p-2 border-b-2 lg:border-0 border-white rounded-2xl border-l-8 lg:hover:border-white lg:hover:rounded-2xl lg:hover:border-l-8 lg:hover:shadow-2xl transition-all duration-100 group">
+              <i class="fa-solid fa-right-from-bracket fa-3xl text-gray-100 text-2xl"></i>
+              <span class="absolute text-center text-gray-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-100 ease-in-out text-lg opacity-100 left-12">Logout</span>
+            </div>
+          </button>
+        </form>
+      </div>
+    </nav>
+    <div class="flex flex-col w-full">
+      <!-- MAIN NAV -->
+      <nav class="bg-[#583DA1] text-[#EFEFEF] flex shadow-2xl h-20 justify-between items-center sticky top-0 px-4 lg:px-8">
+        <!-- ADD FILES BUTTON SHOULD BE ADDED HERE -->
+        <div class="flex lg:w-4/5">
+          <button id="menu-button" class="lg:hidden focus:outline-none">
+            <i class="fa-solid fa-bars text-2xl mr-4"></i>
+          </button>
+          <h1
+            class="py-8 w-full text-white transition-colors text-xl sm:text-2xl md:text-3xl lg:text-3xl duration-300 cursor-pointer">
+            NotesPortal
+          </h1>
+        </div>
+      </nav>
+      <div class="flex mt-[5rem] ml-[3rem]">
+      <div class="w-[20%]  border-[#583DA1] border-solid border-4 rounded-lg mr-[2rem] flex  flex-col items-center h-[70vh] overflow-y-scroll">
+        <select name="smartsubject" id="smartsubject" class="text-center text-[#f5f5f5] w-[60%] h-[10%] bg-[#583DA1] mt-[2rem] rounded-lg">
+          <option value="" disabled selected>Select Subject</option>
+          {% for subject in subjectlist %}
+          <option value="{{subject}}">{{subject}}</option>
+          {% endfor %}
+        </select>
+        <div id="filenameselection" class="h-[100%] flex  flex-col items-center">
+          <button type="button" id="resetcounter">Reset</button>
+        </div>
+      </div>
+      <div class="chatroom bg-gray-200 h-[70vh] w-[60vw]">
+        <form action="" method="post" class="send">
+          <input type="text" name="prompt" placeholder="Ask me anything!" id="prompt" class="prompt" value="">
+          <button type="submit" class="sendbutton"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+        </form>
+      </div>
+    </div>
+      <script src="{{ url_for('static',filename='chatbot.js')}}"></script>
+</body>
+<script>
+  const selectElement = document.getElementById('smartsubject');
+  const filenameselectiondiv = document.getElementById('filenameselection');
+  selectElement.addEventListener('change', function() {
+    const selectedValue = this.value;
+    console.log('Selected value:', selectedValue);
+    fetch("/smartsubjectsfilenames",{
+      method:"POST",
+      headers:{
+        'Content-Type':'Application/JSON'
+      },
+      body:JSON.stringify({
+        "subjectname" : selectedValue
+      })
+    }
+  )
+  .then(response => {
+    if (!response.ok){
+      throw new Error(response.status);
+    }
+    return response.json()
+
+  }
+).then(
+  data => {
+    localStorage.setItem("data",JSON.stringify(data))
+    console.log(JSON.parse(localStorage.getItem("data")))//call localstorage data in function generate buttons
+    
+    if (!localStorage.getItem("counter")) {
+        localStorage.setItem("counter", 1);
+    }
+    smartsubjectname = document.getElementById("smartsubject").value;
+    localStorage.setItem("subjectname", smartsubjectname);
+    
+    filenamevalue = []
+    counter = parseInt(localStorage.getItem("counter")) || 1;
+    generate_select_buttons()
+    document.addEventListener("click",function(event){
+      if (event.target && event.target.id === "addfilebutton"){
+        localStorage.setItem("counter",counter+1)
+        console.log(localStorage.getItem("counter"))
+        generate_select_buttons();
+      }
+    })
+    function generate_select_buttons(){
+      count = localStorage.getItem("counter");
+      select_file_div = ""
+      for (var i = 0;i<count;i++){
+          select_file_div += `<select name="smartsubject-${i}" id="smartsubject-${i}" class="text-center text-[#583DA1] border-2 border-[#583DA1] border-dashed w-[80%] h-[10%] bg-[#f5f5f5] mt-[2rem] rounded-lg">
+              <option value="" disabled selected>Select File</option>`+
+              data.map(item => `<option value="${item.filename}">${item.filename}</option>`).join('') +`</select>`
+        }
+        filenameselectiondiv.innerHTML = 
+    select_file_div
+    +`<button id="addfilebutton" class="text-center text-gray-400 border-2 border-gray-400 border-dashed w-[80%] h-[10%] bg-[#f5f5f5] mt-[2rem] rounded-lg" type="button">
+      <i class="fa fa-plus" aria-hidden="true"></i> Add File</button>`
+    }
+  }
+)
+  });
+  document.getElementById("resetcounter").addEventListener("click",function(){
+    localStorage.setItem("counter",1)
+    localStorage.setItem("subjectname","")
+  })
+  document.addEventListener("DOMContentLoaded",function(){
+    console.log("Page reload")   
+    document.getElementById("smartsubject").value = localStorage.getItem("subjectname");
+       
+       generate_select_buttons()
+  })
+ 
+</script>
+<script>
+  function decodeHTMLEntities(text) {
+    var entities = [
+        ['amp', '&'],
+        ['apos', '\''],
+        ['#x27', '\''],
+        ['#x2F', '/'],
+        ['#39', '\''],
+        ['#47', '/'],
+        ['lt', '<'],
+        ['gt', '>'],
+        ['nbsp', ' '],
+        ['quot', '"']
+    ];
+
+    for (var i = 0, max = entities.length; i < max; ++i)
+        text = text.replace(new RegExp('&' + entities[i][0] + ';', 'g'), entities[i][1]);
+
+    return text;
+}
+  responsegen = `{{response}}`;
+  newres = decodeHTMLEntities(responsegen)
+  document.addEventListener('DOMContentLoaded', function() {
+      const world = document.querySelector('.world');
+      world.removeAttribute('href');
+      document.getElementById("response").innerHTML = newres;
+  });
+  document.getElementById("menu-button").addEventListener("click", function () {
+        var sidebar = document.getElementById("sidebar");
+        if (sidebar.classList.contains("-left-full")) {
+          sidebar.classList.remove("-left-full");
+          sidebar.classList.add("left-0");}
+      });
+      document.getElementById("closemenubtn").addEventListener("click", function () {
+        var sidebar = document.getElementById("sidebar");
+        if (sidebar.classList.contains("left-0")) {
+          sidebar.classList.remove("left-0");
+          sidebar.classList.add("-left-full");}
+      });
+  const openButtons = document.querySelectorAll(".openbtn");
+  const closeButtons = document.querySelectorAll(".closebtn");
+  const modals = document.querySelectorAll(".modal");
+
+  openButtons.forEach((button, index) => {
+    button.addEventListener("click", () => {
+      modals[index].classList.add("open");
+    });
+  });
+
+  closeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      modals.forEach((modal) => {
+        modal.classList.remove("open");
+      });
+    });
+  });
+
+  modals.forEach((modal) => {
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        modal.classList.remove("open");
+      }
+    });
+  });
+</script>
+</html>

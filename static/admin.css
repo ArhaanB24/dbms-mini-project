@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=FAMILY_NAME:wght@WEIGHT_OR_RANGE&display=swap');
+body {
+    background-color: rgb(23, 23, 23);
+    color: whitesmoke;
+    overflow: hidden;
+    font-family: 'Poppins',sans-serif;
+}
+.container {
+    height: 100vh;
+}
+.topcontainer{
+    height: 25vh;
+    background-color: rgb(43, 43, 43);
+    margin: 2rem;
+    border-radius: 30px;
+    padding-left: 2rem;
+    padding-top: 1rem;
+}
+.bottomcontainer{
+    height: 67vh;
+    display: flex;
+    border-top: 3px solid whitesmoke;
+    
+}
+.leftbottom{
+    width: 25%;
+    background-color: rgb(43, 43, 43);
+    margin: 2rem;
+    border-radius: 30px;
+    padding: 2rem;
+}
+.rightbottom{
+    width: 25%;
+    background-color: rgb(43, 43, 43);
+    margin: 2rem;
+    border-radius: 30px;
+    padding: 2rem;
+}
+.activeusers{
+    color: rgb(185, 255, 79);
+    height: 80%;
+    overflow-y: scroll;
+}
+.activeusers li, .flags li{
+    font-size: 1.4rem;
+    padding: 0.5rem;
+}
+#overlay{
+    position: fixed;
+    opacity: 0;
+    top:0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+#overlay.active{
+    opacity: 1;
+    pointer-events: all;
+    z-index: 20;
+}
+@media all and (max-width:600px) {
+    .bottomcontainer{
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto; /* Changed from scroll to auto */
+        overflow-x: hidden;
+        height: auto; /* Changed from 100vh to auto */
+        max-height: 70vh; /* Add this to limit height but allow scrolling */
+    }
+    .rightbottom,.leftbottom{
+        width: 85%;
+    }
+    .leftbottom{
+        width: 85%;
+        overflow-y: auto;
+        margin-bottom: 1rem;
+        min-height: 15rem;
+    }
+    
+    .rightbottom{
+        margin-top: 0rem;
+    }
+    .topcontainer{
+        height: 15vh;
+    }
+}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body style="color:  #F9F9F9;font-family: 'Poppins', sans-serif;">
+    <div style="height: 50vh;background-color: #232323;">
+    <h2 style="margin-left: 2rem;">Hello!<span style="margin-left: 0.3rem;color: #7655d2;"> {checkuser[0]["username"]}</span>,<br>Welcome Back To Our Portal!</h2>
+    <h2 style="margin-left: 2rem;">Your OTP is: <span style="color: red;margin-left: 0.3rem;">{session.get("otp")}</spans></h2>
+    </div>
+</body>
+</html>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins" />
+  <script src="https://kit.fontawesome.com/40b8ba8176.js" crossorigin="anonymous"></script>
+  <title>{{data}}</title>
+  <link rel="stylesheet" href="{{ url_for('static',filename='bevin.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='home.css')}}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="icon" href="{{ url_for('static',filename='logobrowser.png')}}">
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+</head>
+{% if id == "2ed7c7d9-5d92-4f13-ba51-7c8bfed2fae3"  or id == "13704502-208c-4abf-9fe5-6a3276c3c860"%}
+<style>
+  #scrollablenotes{
+    scrollbar-color: #583DA1 #f9f9f9;
+    scrollbar-width: thin;
+    width: 95%; /* Account for scrollbar width */
+    box-sizing: border-box;
+  }
+  </style>
+{% endif %}
+<body class="bg-white">
+  <div class="h-screen w-full flex">
+    <!-- Sidebar -->
+    <nav id="sidebar" class="flex flex-col h-screen bg-black shadow-2xl lg:w-20 w-3/5 p-4 transition-all duration-200 lg:hover:w-60 absolute lg:relative lg:top-0 lg:left-0 -left-full z-50">
+      <div class="flex justify-between transition-all ease-in-out">
+        <img src="/static/sharvilgoatlogo.png" alt="Logo" class="h-16 w-16 rounded-3xl" />
+        <i id="closemenubtn" class="text-gray-100 fa-solid fa-times text-2xl mt-4 lg:hidden focus:outline-none"></i>
+      </div>
+      <div class="h-full flex flex-col justify-around">
+        <!-- Navigation Items -->
+        <a href="/home/{{id}}" class="lg:h-16 md:h-2">
+          <div class="relative cursor-pointer p-2 border-b-2 lg:border-0 border-white rounded-2xl border-l-8 lg:hover:border-white lg:hover:rounded-2xl lg:hover:border-l-8 lg:hover:shadow-2xl transition-all duration-100 group">
+            <i class="fa-solid fa-house-chimney fa-3xl text-gray-100 text-2xl"></i>
+            <span class="absolute text-center text-gray-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-100 ease-in-out text-lg opacity-100 left-12">Home</span>
+          </div>
+        </a>
+        
+        <a href="/favorites/{{id}}" class="lg:h-16 md:h-2">
+          <div class="relative cursor-pointer p-2 border-b-2 lg:border-0 border-white rounded-2xl border-l-8 lg:hover:border-white lg:hover:rounded-2xl lg:hover:border-l-8 lg:hover:shadow-2xl transition-all duration-100 group">
+            <i class="fa-solid fa-book-bookmark fa-3xl text-gray-100 text-2xl"></i>
+            <span class="absolute text-center text-gray-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-100 ease-in-out text-lg opacity-100 left-12">Favourites</span>
+          </div>
+        </a>
+        
+        <a href="/chatbot/{{id}}" class="lg:h-16 md:h-2">
+          <div class="relative cursor-pointer p-2 border-b-2 lg:border-0 border-white rounded-2xl border-l-8 lg:hover:border-white lg:hover:rounded-2xl lg:hover:border-l-8 lg:hover:shadow-2xl transition-all duration-100 group">
+            <i class="fa-solid fa-robot fa-3xl text-gray-100 text-2xl"></i>
+            <span class="absolute text-center text-gray-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-100 ease-in-out text-lg opacity-100 left-12">Chatbot</span>
+          </div>
+        </a>
+        <a href="/smartsearch/{{id}}" class="lg:h-16 md:h-2">
+          <div class="relative cursor-pointer p-2 border-b-2 lg:border-0 border-white rounded-2xl border-l-8 lg:hover:border-white lg:hover:rounded-2xl lg:hover:border-l-8 lg:hover:shadow-2xl transition-all duration-100 group">
+            <i class="fa-solid fa-binoculars fa-3xl text-gray-100 text-2xl"></i>
+            <span class="absolute text-center text-gray-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-100 ease-in-out text-lg opacity-100 left-12">Smart Search</span>
+          </div>
+        </a>
+        <a href="/worldchat/{{id}}" class="lg:h-16 md:h-2  opacity-60 lg:cursor-pointer lg:opacity-100 world">
+          <div class="relative cursor-pointer p-2 border-b-2 lg:border-0 border-white rounded-2xl border-l-8 lg:hover:border-white lg:hover:rounded-2xl lg:hover:border-l-8 lg:hover:shadow-2xl transition-all duration-100 group">
+            <i class="fa-solid fa-globe fa-3xl text-gray-100 text-2xl"></i>
+            <span class="absolute text-center text-gray-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-100 ease-in-out text-lg opacity-100 left-12">World Chat</span>
+          </div>
+        </a>
+        <form action="/home/{{id}}" name="navbar" method="post">
+        <button href="/" class="lg:h-16 md:h-2 w-full text-left" value="signout" name="signout">
+          <div class="relative cursor-pointer p-2 border-b-2 lg:border-0 border-white rounded-2xl border-l-8 lg:hover:border-white lg:hover:rounded-2xl lg:hover:border-l-8 lg:hover:shadow-2xl transition-all duration-100 group">
+            <i class="fa-solid fa-right-from-bracket fa-3xl text-gray-100 text-2xl"></i>
+            <span class="absolute text-center text-gray-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-100 ease-in-out text-lg opacity-100 left-12">Logout</span>
+          </div>
+        </button>
+      </form>
+      </div>
+    </nav>
+
+    <div class="flex flex-col w-full text-left">
+      <!-- MAIN NAV -->
+      <nav
+        class="bg-[#583DA1] text-[#EFEFEF] flex shadow-2xl h-20 justify-between items-center sticky top-0 px-4 lg:px-8">
+        <!-- ADD FILES BUTTON SHOULD BE ADDED HERE -->
+        <div class="flex lg:w-4/5">
+          <button id="menu-button" class="lg:hidden focus:outline-none">
+            <i class="fa-solid fa-bars text-2xl mr-4"></i>
+          </button>
+          <h1 onclick="sharvil()"
+            class="py-8 w-full text-white transition-colors text-xl sm:text-2xl md:text-3xl lg:text-3xl duration-300 cursor-pointer">
+            NotesPortal
+          </h1>
+        </div>
+        <div  class="mb-10 mr-[20rem]" id="search-div">
+          <datalist id="pdf-list">
+            {% for i in range(pdflist|length-1,-1,-1) %}
+            <option value="{{ pdflist[i]['filename'][:-4] }}">{{ pdflist[i]['filename'][:-4] }}</option>
+            {% endfor %}
+          </datalist>
+          <input type="text" id="search" autocomplete="on" list="pdf-list" class="home-search"> <button
+            type="button" onclick="searchfunc()" class="home-searchbutton"><i
+              class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="flex flex-row justify-around w-3/12 ">
+          <button class="profile" data-profile-target="#profile-open"><i
+              class="fa-solid fa-user text-2xl text-[#EFEFEF] transition-colors duration-300 cursor-pointer"></i></button>
+        </div>
+       
+      </nav>
+      <div class="profile-open" id="profile-open">
+        <div class="profiletitle">
+       <span style="font-weight: bold;">Hello {{username}} 👋</span> 
+        <button data-close-button id="close">&times;</button>
+        </div>
+        <div class="profilebuttons flex flex-col">
+        <button data-addsub-target="#addsubcont" class="navbutton">Add Subjects</button>
+        <button data-remsub-target="#remsubcont" class="navbutton" class="rembut">Remove Subjects</button></a>
+        </div>
+        <div style="width: 100%;display: block;text-align: center;">
+        <a href="/ourteam" style="color: white;font-weight: bold;text-decoration-line: underline;text-decoration-color: white;" target="_blank"><span>Our Team</span></a>
+        </div>
+    </div>
+    <div id="uploadfilecont" class="uploadfile {{active_u}}">
+        <div id="uploadfiletitle" class="uploadfiletitle">
+            Upload File 
+            <button data-close-button>&times;</button>
+        </div>
+
+        <div id="uploadfile-body" class="uploadfilebody">
+            <form action="" method="post" enctype="multipart/form-data" class="uploadform" >
+                {% with messages = get_flashed_messages()%}
+                    {% if messages%}
+                        {% for message in messages%}
+                            <p style="color: red;">{{message}}</p>
+                        {%endfor%}
+                    {%endif%}
+                {%endwith%}
+                
+                <input type="file" name="file" id="file" accept="application/pdf" required>
+                    <input name="subject" style="width: 20rem;" type="text" placeholder="eg LADE for Linear Algebra and Differential Equation" required><br>
+                    <input type="text" name="topic" placeholder="eg Eigenvalues" required>
+                    <textarea name="desc" id="desc" placeholder="Description" required></textarea>
+                <button type="submit" class="mt-6">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div id="addsubcont" class="addsub {{active}}">
+        <div id="addsub" class="addsubtitle">
+            Add Subjects 
+            <button data-close-button>&times;</button>
+        </div>
+        <div id="addsub-body" class="addsubbody">
+            <form action="" method="post" enctype="multipart/form-data">
+                <div class="addsubbodytile">
+                <label for="numsub">Number of Subjects:</label>
+                <input type="number" name="numsub" id="numsub" value="{{ num }}" min="0"><br>
+                </div>
+                <div class="addsubele">
+                {% for x in range(num) %}
+                <input type="text" name="subject_{{ x }}" placeholder="Subject {{ x+1 }}"><br>
+                {% endfor %}
+                </div>
+                <button type="submit" name="finalsubjects" value="submit">Submit</button>
+        </div>
+    </div>
+    <div id="remsubcont" class="remsub {{active_r}} h-[70%] overflow-y-scroll"> 
+        <div id="remsubtitle" class="remsubtitle">
+            Remove Subjects 
+            <button data-close-button>&times;</button>
+        </div>
+        <div id="remsub-body" class="remsubbody">
+            <div id="editsublst">
+                <form action="" method="post" enctype="multipart/form-data" class="h-[50%] overflow-y-scroll">
+                    <button name="editsubject" id="editsubject" value="removeall" class="p-[1rem] bg-red-500 text-[#ffffff] w-full mb-[2rem] rounded-2xl">REMOVE ALL</button>
+                
+            {% for subject in tempnavsub %}
+                <div class="remsubele">
+          
+                    <span>{{ subject }}</span>
+                    <button name="editsubject" id="editsubject" value="{{ subject }}"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+      </div>
+      <!-- MAIN CONTENT -->
+      <div id="subjectbuttonsdiv" class="w-full md:max-w-[80%] lg:max-w-[99%] xl:max-w-[78%] md:ml-[8rem]  h-[11%] md:h-[20%] mt-6 laptopsubj overflow-x-auto overflow-y-hidden whitespace-nowrap ">
+      <form action="" method="post" class="overflow-x-scroll">
+        {% for subject in navsublst %}
+        {% if subject == data %}
+        <button name="navbarsubject" value="{{subject}}" class="w-[10rem] h-[4rem] mr-2 md:mr-6 rounded-3xl text-center text-[#EFEFEF] bg-[#583da1] text-lg border-2 border-[#583da1] font-bold shadow-2xl">{{subject}}</button>
+        {% else %}
+        <button name="navbarsubject" value="{{subject}}" class="w-[10rem] h-[4rem] mr-2 md:mr-6 rounded-3xl text-[#583DA1] bg-[#EFEFEF] text-center hover:text-[#EFEFEF] hover:bg-[#583da1] hover:border-[#583da1] text-lg border-2 border-[#583da1] hover:font-bold hover:shadow-2xl transition-all duration-300">{{subject}}</button>
+        {% endif %}
+        {% endfor %}
+      </form>
+      </div>
+      <div class="w-full flex justify-center items-center text-center">
+       <b><p behavior=alternate direction="" class="text-red-500">New Semester New Subjects?<br>Click the profile icon above to update your subjects for the new semester!</p></b> 
+      </div>
+      <div id="scrollablenotes" class="h-full w-full flex-wrap md:pl-[8rem] overflow-y-scroll overflow-x-hidden md:mt-2 m-0">
+        <!-- NOTES DISPLAY -->
+         
+        <form action="/home/{{id}}" name="getfile" method="post" id="homeform">
+          <div id="home-container" class="flex flex-wrap h-full w-fit overflow-y-scroll overflow-x-hidden">
+            <div id="mobile-search-center" class="h-[3rem] mr-[25.5rem]">
+            <div  class="mb-10" id="mobile-search-div" class="w-full bg-black">
+              <datalist id="pdf-list">
+                {% for i in range(pdflist|length-1,-1,-1) %}
+                <option value="{{ pdflist[i]['filename'][:-4] }}">{{ pdflist[i]['filename'][:-4] }}</option>
+                {% endfor %}
+              </datalist>
+              <input type="text" id="searchmob" autocomplete="on" list="pdf-list" class="home-search"> <button
+                type="button" onclick="searchfunc()" class="home-searchbutton"><i
+                  class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            
+          </div>
+          
+            {% for i in range(pdflist|length-1,-1,-1) %}
+            {% if pdflist[i]['id'] in likedfiles %}
+            <div id="pdf-file-containter" data-like-button style="border-color: rgb(240, 57, 54);"
+              name="{{ pdflist[i]['id'] }}">
+              <input id="file-id" style="display: none;" value="{{ pdflist[i]['id'] }}">
+              {% else %}
+              <div id="pdf-file-containter" data-like-button name="{{ pdflist[i]['id'] }}">
+                <input id="file-id" style="display: none;" value="{{ pdflist[i]['id'] }}">
+                {% endif %}
+                <div id="pdf-buttons" class="flex items-end">
+                  {% if pdflist[i]['id'] in favoritelist %}
+                  <button name="favorite" id="favorite-button" value="{{ pdflist[i]['id'] }}"
+                    style="background-color: rgb(255, 208, 0); border-color: rgb(255, 208, 0);"></button>
+                  {% else %}
+                  <button name="favorite" id="favorite-button" value="{{ pdflist[i]['id'] }}" class="bg-gray-300"></button>
+                  {% endif %}
+                </div>
+                <div id="pdf-details">
+                  <iframe id="pdf-file" src="{{ pdflist[i]['filelink'] }}"></iframe>
+                  <br><br>
+                  <p>{{ pdflist[i]['filename'][:-4] }}</p>
+                  <br>
+                  <p id="likes"><span class="likes">{{ pdflist[i]['likes'] }}</span> ❤️</p>
+                </div>
+                <button id="preview" value="{{ pdflist[i] }}" name="preview" data-preview-target="#preview-pdf"
+                  type="button">Preview</button>
+                  
+              </div>
+              {% endfor %}
+              {% if pdflist|length == 0 %}
+              <p id="nofiles">Sorry we don't have any files for this subject<br>You can add files for this subject using the <i>Add
+                  Files</i> button below!</p>
+              {% endif %}
+            </div>
+        </form>
+      </div>
+      <button data-upload-target="#uploadfilecont"
+          class="bg-[#583DA1] flex h-16 w-16 rounded-full items-center justify-center text-white text-center fixed lg:right-10 right-4 bottom-4 z-10"
+        >
+          <p class="text-3xl p-2 font-black">&plus;</p>
+    </button>
+
+    </div>
+  </div>
+  </div>
+  <div id="preview-pdf" class="preview-pdf ">
+  </div>
+  <div id="overlay" class="{{active}} {{active_r}} {{active_u}}"></div> 
+  <script src="{{ url_for('static',filename='index.js')}}"></script>
+  <script>
+    count = 0
+    function sharvil(){
+      count++;
+      if (count == 7){
+        count = 0;
+        window.location.href = "/sharvil";
+        console.log(count)
+      }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+    if (window.innerWidth > 1024) {
+      const sidebar = document.getElementById("sidebar");
+      const subjectButtonsDiv = document.getElementById("subjectbuttonsdiv");
+      sidebar.addEventListener('mouseover', function() {
+        subjectButtonsDiv.style.whiteSpace = "normal"; // Adjust as needed
+      });
+      sidebar.addEventListener('mouseout', function() {
+        subjectButtonsDiv.style.whiteSpace = "nowrap"; // Adjust as needed
+      });
+      } 
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+      const world = document.querySelector('.world');
+      world.removeAttribute('href');
+  });
+    document.getElementById("menu-button").addEventListener("click", function () {
+          var sidebar = document.getElementById("sidebar");
+          if (sidebar.classList.contains("-left-full")) {
+            sidebar.classList.remove("-left-full");
+            sidebar.classList.add("left-0");}
+        });
+        document.getElementById("closemenubtn").addEventListener("click", function () {
+          var sidebar = document.getElementById("sidebar");
+          if (sidebar.classList.contains("left-0")) {
+            sidebar.classList.remove("left-0");
+            sidebar.classList.add("-left-full");}
+        });
+    const openButtons = document.querySelectorAll(".openbtn");
+    const closeButtons = document.querySelectorAll(".closebtn");
+    const modals = document.querySelectorAll(".modal");
+
+    openButtons.forEach((button, index) => {
+      button.addEventListener("click", () => {
+        modals[index].classList.add("open");
+      });
+    });
+
+    closeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        modals.forEach((modal) => {
+          modal.classList.remove("open");
+        });
+      });
+    });
+
+    modals.forEach((modal) => {
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          modal.classList.remove("open");
+        }
+      });
+    });
+  </script>
+  <script>
+    filestring = "{{pdflist}}"
+    filestringnew = filestring.replace(/&#39;/g, "'")
+    filestringnew = filestringnew.replace(/'/g, '"')
+    files = JSON.parse(filestringnew)
+    function searchfunc() {
+      var search = document.getElementById("search").value.toUpperCase()
+      var searchmob = document.getElementById("searchmob").value.toUpperCase()
+      if (searchmob){
+        for (let i = 0; i < files.length; i++) {
+        result = files[i]["filename"].includes(searchmob)
+        
+        if (result == false) {
+          document.getElementsByName(files[i]["id"])[0].style.display = "none";
+
+        }
+        else if (result == true) {
+          document.getElementsByName(files[i]["id"])[0].style.display = "inline"
+          
+        }
+      }
+      }
+      else {
+        for (let i = 0; i < files.length; i++) {
+        result = files[i]["filename"].includes(search)
+        
+        if (result == false) {
+          document.getElementsByName(files[i]["id"])[0].style.display = "none";
+
+        }
+        else if (result == true) {
+          document.getElementsByName(files[i]["id"])[0].style.display = "inline"
+          
+        }
+      }
+      }
+      
+
+    }
+
+  </script>
+<script>
+  const col = "{{ customcolor }}";
+  const oldColor = "#583DA1"; 
+  const newColor = `#${col}`; 
+  console.log("custom color" + newColor)
+  // Function to change colors in all elements
+  function changeColors(oldColor, newColor) {
+      const elements = document.querySelectorAll("*"); 
+      elements.forEach((element) => {
+          const bgColor = getComputedStyle(element).backgroundColor;
+          if (hexToRgb(oldColor) === bgColor) {
+              element.style.backgroundColor = newColor;
+          }
+
+          // Check and replace text color
+          const textColor = getComputedStyle(element).color;
+          if (hexToRgb(oldColor) === textColor) {
+              element.style.color = newColor;
+          }
+
+          // Check and replace border color
+          const borderColor = getComputedStyle(element).borderColor;
+          if (hexToRgb(oldColor) === borderColor) {
+              element.style.borderColor = newColor;
+          }
+      });
+
+      // Additionally, explicitly update the border color for the element with id="searchmob"
+      const searchMobElement = document.getElementById("searchmob");
+      if (searchMobElement) {
+          searchMobElement.style.borderColor = newColor;
+      }
+  }
+
+  // Utility function to convert hex to rgb
+  function hexToRgb(hex) {
+      const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+      hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result
+          ? `rgb(${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)})`
+          : null;
+  }
+  const newColor1 = `#${col}`;  // Barbie Pink color in hex format
+
+  // Function to change the border color of specific elements by ID
+  function changeSpecificBorders(newColor) {
+      // List of specific IDs
+      const ids = ["search", "searchmob"];
+      
+      // Loop through each ID and update the border color
+      ids.forEach((id) => {
+          const element = document.getElementById(id);
+          if (element) {
+              element.style.borderColor = newColor1;
+          }
+      });
+  }
+
+  // Call the function to update specific borders
+  changeSpecificBorders(newColor);
+
+  // Call the function to apply the changes
+  changeColors(oldColor, newColor);
+</script>
+    
+  <script>
+    var userid = "{{ id }}";
+    
+    const likecheck = document.querySelectorAll("[data-like-button]")
+   
+    likecheck.forEach(divlike => {
+      divlike.addEventListener("dblclick", () => {
+        likeval = divlike.getElementsByClassName("likes")[0].innerHTML
+        var brdrclr = divlike.closest("#pdf-file-containter").style.borderColor
+        id = divlike.getElementsByTagName("input")[0].value
+        if (brdrclr == "rgb(240, 57, 54)") {
+          divlike.getElementsByClassName("likes")[0].innerHTML = parseInt(likeval) - 1
+          divlike.closest("#pdf-file-containter").style.borderColor = "rgb(88, 61, 161)"
+          fetch("/likes", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ "id": id, "userid": userid, "is_in_list": 1 })
+          })
+        }
+        else if (brdrclr == "rgb(88, 61, 161)" || brdrclr.length == 0) {
+          divlike.getElementsByClassName("likes")[0].innerHTML = parseInt(likeval) + 1
+          divlike.closest("#pdf-file-containter").style.borderColor = "rgb(240, 57, 54)"
+          fetch("/likes", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ "id": id, "userid": userid, "is_in_list": 0 })
+          })
+        }
+        else {
+          console.log("Err")
+        }
+      })
+    })
+
+  </script>
+</body>
+
+</html>

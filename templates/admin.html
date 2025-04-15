@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='admin.css')}}">
+    <link rel="icon" href="{{ url_for('static',filename='logobrowser.png')}}">
+    <script src="https://kit.fontawesome.com/40b8ba8176.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="container">
+    <div class="topcontainer">
+        <h1>Admin</h1>
+        Number of users: {{numusers}}
+    </div>
+    <div class="bottomcontainer">
+        <div class="leftbottom">
+            <h2>Active Users</h2>
+            <div class="activeusers">
+                <ol>
+                {% for x in activeusers %}
+                <li>{{ x["username"] }}</li>
+                {% endfor %}
+                </ol>
+            </div>
+        </div>
+        <div class="rightbottom">
+            <form action="" method="post" class="">
+                <div class="mb-4">
+                  <label for="coldchangeid" class="block text-white mb-2">ID</label>
+                  <input type="text" name="coldchangeid" id="coldchangeid" class="w-full bg-[rgb(43,43,43)] border border-[#583da1] rounded py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-[#583da1] focus:border-transparent">
+                </div>
+                
+                <div class="mb-6">
+                  <label for="coldchangename" class="block text-white mb-2">Hex Color</label>
+                  <input type="text" name="coldchangename" id="coldchangename" class="w-full bg-[rgb(43,43,43)] border border-[#583da1] rounded py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-[#583da1] focus:border-transparent">
+                  <small>Don't Include "#"</small>
+                </div>
+                <button type="submit" class="w-full bg-[#583da1] hover:bg-opacity-90 text-white font-medium py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-[#583da1] focus:ring-opacity-50 transition duration-200">
+                  Submit
+                </button>
+              </form>
+        </div>
+    </div>
+    <div>
+        
+    </div>
+    <div id="overlay"></div> 
+    <script src="{{ url_for('static',filename='admin.js')}}"></script>
+<!-- FINISH FLAG LATER -->
+</body>
+</html>

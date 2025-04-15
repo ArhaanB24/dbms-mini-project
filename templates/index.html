@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NotesPortal</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='signupsignin.css')}}">
+    <script src="https://kit.fontawesome.com/40b8ba8176.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="{{ url_for('static',filename='logobrowser.png')}}">
+    <meta name="google-site-verification" content="uYynVvoYN6lXJ71ZWBQm5AjXbOua1D4myHQQ_x4bJO8" />
+    <meta name="description" content="A one-stop platform to streamline your learning journey. Upload, download, and share study materials with fellow MPSTME students. Personalize your experience by choosing the subjects relevant to your courses, and easily access notes from others in your program. Bookmark important notes for quick reference later!">
+    <meta name="keywords" content="notes, Notes portal, Notes Portal, Notesportal, NotesPortal, portal, MPSTME notes,NMIMS notes">
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+</head>
+<body>
+       <div class="container {{mode}}">
+            <div class="form-container">
+                 <div class="signin-signup">
+                    <form action="" class="sign-in-form" method="post" enctype="multipart/form-data" id="submitlogin">
+                    <input type="text" name="flag" value="signin" style="display: none;">
+                        <h2 class="title">Sign in</h2>
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="text" name="signinmail" placeholder="Email" value="{{ signinmail }}" required>
+                    </div>
+                    {% if checkuser %}
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" name="password" placeholder="Enter OTP" maxlength="6" minlength="6" required>
+                    </div>
+                    {% endif %}
+                    <button type="submit" value="Login" class="g-recaptcha btn" data-sitekey="6LdLTvoqAAAAAK_atKeqYUe5IPyHR9y0eebHFati" data-callback='onSubmitLogin' data-action='submit'>Login</button>
+                    {{otp}}
+                    {% with messages = get_flashed_messages()%}
+                    {% if messages %}
+                        {% for message in messages%}
+                        {% if checkuser %}
+                        {% if false_otp %}
+                        <br>
+                            <p style="color: red;">Invalid OTP</p>
+                        
+                        {% else %}
+                        
+                        <br>
+                            <p style="color: red;">An OTP has been sent to your email address</p>
+                            
+                        {%endif%}
+                            {% else %}
+                            <br>
+                            <p style="color: red;">Please Sign Up First</p>
+                        {%endif%}
+                        {%endfor%}
+                        {%endif%}
+                    {%endwith%}
+                    </form>
+                    <form action="" class="sign-up-form" name="user" method="post" enctype="multipart/form-data" id="sign-up-form">
+                    <input type="text" name="flag" value="signup" style="display: none;">
+                        <h2 class="title">Sign up</h2>
+                        <div class="scroll ">
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                            <input type="text" name="firstname" value="{{ firstname }}" placeholder="First name" minlength="3" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" name="lastname" value="{{ lastname }}" placeholder="Last name" minlength="3" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" name="username" value="{{ username }}" placeholder="Username" maxlength="30" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="text" name="email" value="{{ mail }}" placeholder="Email" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-file"></i>
+                        <input type="number" name="numsub" id="numsub" value="{{ num }}" min="1" placeholder="No of subjects" required>
+                    </div>
+                    {% if num != "" %}
+                    <div class="subs">
+                    {% for x in range(num) %}
+                    <div class="input-field">
+                        <i class="fas fa-file"></i>
+                        <input type="text" name="subject_{{ x }}" placeholder="Enter subject {{x+1}} code (eg LADE)" maxlength="7" required>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-key"></i>
+                    <input type="password" name="password" id="password" placeholder="Enter OTP" maxlength="6" minlength="6" required>
+                </div>
+                {% endif %}
+                <button id="submitsignup" type="submit" value="Sign up" class="g-recaptcha btn" data-sitekey="6LdLTvoqAAAAAK_atKeqYUe5IPyHR9y0eebHFati" data-callback='onSubmitSignUp' data-action='submit'>Sign Up</button>
+                {{otp}}
+                {% with messages = get_flashed_messages()%}
+                {% if messages %}
+                    {% for message in messages%}
+                    {% if checkuser %}
+                    {% if false_otp %}
+                    <br>
+                        <p style="color: red;">Invalid OTP</p>
+                    
+                    {% else %}
+                    
+                    <br>
+                        <p style="color: red;">An OTP has been sent to your email address</p>
+                        
+                    {%endif%}
+                        {% else %}
+                        <br>
+                        <p style="color: red;">Please Sign Up First</p>
+                    {%endif%}
+                    {%endfor%}
+                    {%endif%}
+                {%endwith%}
+            </div>
+            </form>
+            </div>
+            {% if num %}
+            <div id="otppopcont" class="otppop active">
+                <div id="otppop" class="otppoptitle">
+                  Verify OTP
+                  <button data-close-button>&times;</button>
+                </div><br>
+                <div id="otppop-body" class="otppopbody">
+                  An OTP has been sent to the email address you provided. If you haven't received it, please check your spam folder.
+                </div>
+              </div>
+            <div id="overlay" class="active"></div>
+            {% endif %}   
+            <div class="panels-container">
+                <div class="panel left-panel">
+                    <div class="content">
+                        <h3>New here??</h3>
+                        <p>Haven't signed up create a account now to access files</p>
+                        <button class="btn transparent" id="sign-up-btn">Sign Up</button>
+                    </div>
+                    <img src="static/log-in2.svg" class="image" alt="">
+                </div>
+                <div class="panel right-panel">
+                    <div class="content">
+                        <h3>Already a user?</h3>
+                        <p>Log in to access saved files</p>
+                        <button class="btn transparent" id="sign-in-btn">Sign In</button>
+                    </div>
+                    <img src="static/sign-in2.svg" class="image" alt="">
+                </div>
+            </div> 
+            
+       </div> 
+       
+</body>
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+<script src="{{ url_for('static',filename='tech.js')}}"></script>
+<script src="{{ url_for('static',filename='index.js')}}"></script>
+<script>
+    
+    //make for sign up form also
+    function onSubmitLogin(token) {
+      document.getElementById("submitlogin").submit();
+    }
+    function onSubmitSignUp(token) {
+      document.getElementById("sign-up-form").submit();
+    }
+  </script>
+</html>

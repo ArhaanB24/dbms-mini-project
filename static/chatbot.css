@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=FAMILY_NAME:wght@WEIGHT_OR_RANGE&display=swap');
+*:focus,*:active{
+    border: none;
+}
+.chatroom{
+    border: 5px solid #583DA1;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+body{
+    display: flex;
+    justify-content: center;
+    font-family: 'Poppins',sans-serif;
+    align-items: center;
+}
+input{
+    font-family: 'Poppins',sans-serif;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+.prompt{
+    border: 1px solid black;
+    width:100%;
+    border-radius: 50px 0px 0px 50px;
+    border:none;
+    background-color: white;
+    margin-left: 1rem;
+    padding: 1rem;
+}
+.send{
+    position: absolute;
+    bottom: 0;
+    width:100%;
+    height: 3rem;
+    display: flex;flex-direction: row;
+    margin-bottom: 1rem;
+}
+.send form{
+    display: flex;border:10px solid red
+}
+.sendbutton{
+    border: none;
+    background-color: #583DA1;
+    width: 5rem;height: 3rem;
+    border-radius: 0 20px 20px 0;
+    font-size: 1.1rem;
+}
+.sendbutton i{
+    color: white;
+}
+.response{
+    margin-left: 3rem;
+    margin-right: 3rem;
+    margin-bottom: 4.5rem;
+    background-color: #583DA1;
+    color: white;
+    max-height: 60%;
+    overflow-y: scroll;
+    transition: ease-in;
+    padding: 1rem;
+    border-radius: 15px;
+    max-width: 40%;
+    width: fit-content;
+}
+.prompt-div{
+    background-color: white;
+    color: #583DA1;
+    transition: ease-in;
+    padding: 1rem;
+    border-radius: 15px;
+    margin: 3rem;
+    width: fit-content;
+    max-height: 50%;
+    overflow-y: scroll;
+    font-weight: bold;
+}
+
+@media all and (max-width:600px){
+    .response{
+        max-width: 100%;
+    }
+}

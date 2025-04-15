@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invalid</title>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://kit.fontawesome.com/40b8ba8176.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="{{ url_for('static',filename='logobrowser.png')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<style>
+    i{
+        font-size: 3rem;
+        color: red;
+    }
+</style>
+<body style="background-color: #583da1;font-family: 'Poppins', sans-serif;">
+    <div style="margin: 0; display: flex; justify-content: center; align-items: center; height: 80vh; width: 100%;">
+        <div style="box-shadow: 12px 12px 2px 1px rgba(0, 0,0, .2);background-color: #f9f9f9; width: 31rem; height: 19rem;border-radius: 1rem;display: flex;text-align: center;justify-content: center;align-items: center; border: 5px solid #f9f9f9;flex-direction: column;padding: 2rem;">
+            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i><br>
+            <p style="color: red;font-size: 1.8rem;font-weight: bold;margin: 0;">
+                Invalid Username! <br>
+                <p style="text-wrap: wrap;font-size: 1rem; color: red;font-weight: normal;">Username should not have any special characters and should be less than 30 Characters</p>
+            </p>
+            <a href="/" style="text-decoration: none; display: flex; flex-direction: column;"><button style="box-shadow: 3px 3px 2px 1px rgba(0, 0,0, .2);background-color: #583da1;color: #f9f9f9;padding: 1rem;border-radius: 15rem; border: none;font-size: 1rem; font-weight: bold;">Go Back To Login</button></a>
+                
+            </div>
+    </div>
+    </body>
+</html>
